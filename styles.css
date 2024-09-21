@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que el contenido esté centrado verticalmente */
+    background-color: #f7f7f7; /* Color de fondo suave */
+}
+
+.container {
+    text-align: center; /* Centra el texto en el contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para un efecto más estético */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"],
+button { /* Agrupando el estilo del botón aquí */
+    padding: 10px; /* Aumento del padding para mejor usabilidad */
+    margin-top: 5px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 4px; /* Esquinas redondeadas */
+}
+
+input[type="submit"],
+button {
+    background-color: #007BFF; /* Color de fondo del botón */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold; /* Texto en negrita */
+}
+
+input[type="submit"]:hover,
+button:hover { /* Efecto hover para ambos */
+    background-color: #0056b3;
+}
+
+#results,
+#reservations {
+    margin-top: 20px;
+    text-align: left; /* Alinear texto a la izquierda para resultados */
+}

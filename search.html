@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Vuelos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('IMG/fondo.jpg'); /* Cambia la ruta a tu imagen */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="date"],
+        select,
+        input[type="submit"],
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reservar Vuelos</h1>
+        <form action="reserve_flight.php" method="POST">
+            <label for="username">Confirmación de Usuario:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="origin">Origen:</label>
+            <input type="text" id="origin" name="origin" required>
+            
+            <label for="destination">Destino:</label>
+            <input type="text" id="destination" name="destination" required>
+            
+            <label for="fecha_salida">Fecha de Salida:</label>
+            <input type="date" id="fecha_salida" name="fecha_salida" required>
+            
+            <label for="fecha_regreso">Fecha de Regreso:</label>
+            <input type="date" id="fecha_regreso" name="fecha_regreso" required>
+            
+            <label for="clase">Clase:</label>
+            <select id="clase" name="clase">
+                <option value="turista">Clase Turista</option>
+                <option value="premium">Clase Premium</option>
+                <option value="vip">Clase VIP</option>
+            </select>
+            
+            <label for="precio">Precio:</label>
+            <span id="precio">$0.00</span>
+            <input type="hidden" id="hidden_precio" name="precio">
+            
+            <input type="submit" value="Reservar">
+        </form>
+        
+        <button onclick="location.href='reservation.html';">Gestionar Vuelos</button>
+    </div>
+
+    <script>
+        function generarPrecioAleatorio(base) {
+            return (Math.random() * (base * 0.2) + base).toFixed(2);
+        }
+    
+        function actualizarPrecio() {
+            let basePrecio = 300;
+            const clase = document.getElementById("clase").value;
+
+            if (clase === "premium") {
+                basePrecio = 500;
+            } else if (clase === "vip") {
+                basePrecio = 800;
+            }
+
+            const precio = generarPrecioAleatorio(basePrecio);
+            document.getElementById("precio").textContent = "$" + precio;
+            document.getElementById("hidden_precio").value = precio;
+        }
+    
+        document.getElementById("origin").addEventListener("input", actualizarPrecio);
+        document.getElementById("destination").addEventListener("input", actualizarPrecio);
+        document.getElementById("fecha_salida").addEventListener("input", actualizarPrecio);
+        document.getElementById("fecha_regreso").addEventListener("input", actualizarPrecio);
+        document.getElementById("clase").addEventListener("change", actualizarPrecio);
+    </script>
+
+    <div id="results"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
